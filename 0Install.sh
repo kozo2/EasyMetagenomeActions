@@ -19,7 +19,7 @@ echo $PATH
 wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -f 
 ~/miniconda3/condabin/conda init
-source ~/.bashrc
+eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
 conda -V
 python --version
 conda config --add channels bioconda
