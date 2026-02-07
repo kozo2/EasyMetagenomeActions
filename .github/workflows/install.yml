@@ -18,3 +18,8 @@ jobs:
         run: |
           s=kneaddata
           wget -c ftp://download.nmdc.cn/tools/conda/${s}.tar.gz
+          soft=~/miniconda3
+          mkdir -p ${soft}/envs/${s}
+          tar -xvzf ${s}.tar.gz -C ${soft}/envs/${s}
+          conda activate ${s}
+          conda unpack
