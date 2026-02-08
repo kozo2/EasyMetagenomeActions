@@ -45,3 +45,15 @@ fastqc -v
 trimmomatic -version
 multiqc --version
 kneaddata_database
+mkdir -p ${db}/kneaddata/human
+kneaddata_database --download human_genome bowtie2 ${db}/kneaddata/human
+mkdir -p ${db}/kneaddata/mouse
+kneaddata_database --download mouse_C57BL bowtie2 ${db}/kneaddata/mouse
+conda activate kneaddata
+mkdir -p ${db}/kneaddata/ath
+cd ${db}/kneaddata/ath
+wget -c http://ftp.ensemblgenomes.org/pub/plants/release-51/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+mv Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz tair10.fa.gz
+gunzip tair10.fa.gz
+time bowtie2-build -f tair10.fa tair10 --threads 4
+cd ${db}
